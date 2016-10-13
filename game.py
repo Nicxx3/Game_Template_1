@@ -6,8 +6,9 @@ import string
 
 def remove_punct(text):
 
-
+    # add all punctuations in punct
     punct = set(string.punctuation)
+    # checks every letter using x and compares it with punct. If not punct, then adds it in no_punct
     no_punct = ''.join(x for x in text if x not in punct)
     
     text = no_punct
@@ -32,6 +33,7 @@ def remove_punct(text):
     
 def remove_spaces(text):
 
+    # .strip() is a string method to remove white spaces
     text = text.strip()
 
     return text
@@ -57,6 +59,7 @@ def remove_spaces(text):
 
 def normalise_input(user_input):
     
+    # Starts by making the user input, lower cased. Then removes punctuation and finally remove spaces. Then return.
     return remove_spaces(remove_punct(user_input.lower()))
     
     
@@ -76,6 +79,7 @@ def normalise_input(user_input):
     
 def display_room(room):
 
+    # Prints the name and the description of the room
     print()
     print(room["name"].upper())
     print()
@@ -105,7 +109,8 @@ def display_room(room):
         
 
 def exit_leads_to(exits, direction):
-    
+
+    #Returns the path that the exit leads to. Direction is the users input.    
     return rooms[exits[direction]]["name"]
     
     
@@ -125,6 +130,8 @@ def exit_leads_to(exits, direction):
     
 
 def print_menu_line(direction, leads_to):
+
+    #Display the available exit to the user. 
     
     print("Go " + direction.upper() + " to " + leads_to + ".")
 
@@ -160,6 +167,8 @@ def print_menu(exits):
     Where do you want to go?
     """
     print("You can:")
+
+    #Display all available exits to the user
     
     for directions in exits:
         print_menu_line(directions, exit_leads_to(exits, directions))
@@ -172,6 +181,8 @@ def print_menu(exits):
 
 
 def is_valid_exit(exits, user_input):
+    
+    #Checks if the user_input exists in exits
     
     return user_input in exits
                     
@@ -232,6 +243,8 @@ def menu(exits):
 
 def move(exits, direction):
 
+    # Returns the room that the user wants to move go.
+    
     return rooms[exits[direction]]
     
 
